@@ -12,6 +12,8 @@ mod ownership;
 mod borrowing;
 mod lifetime;
 mod closure;
+mod collections;
+mod iterator;
 
 use data::data_test;
 use method::method_test;
@@ -20,6 +22,8 @@ use ownership::ownership_test;
 use borrowing::borrowing_test;
 use lifetime::lifetime_test;
 use closure::closure_test;
+use collections::collection_test;
+use iterator::iterator_test;
 
 fn main() {
     //基础数据
@@ -36,5 +40,10 @@ fn main() {
     lifetime_test();
     //闭包
     closure_test();
+    //集合类型
+    collection_test();
+    //迭代器
+    iterator_test();
+
 
 }
