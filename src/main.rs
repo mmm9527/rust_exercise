@@ -3,7 +3,7 @@
 #![allow(dead_code)]
 #![allow(unused_imports)]
 #![allow(unused_assignments)]
-
+#![feature(box_syntax, box_patterns)]
 
 mod data;
 mod method;
@@ -15,6 +15,10 @@ mod closure;
 mod collections;
 mod iterator;
 mod error_handle;
+mod io_test;
+mod macro_test;
+mod heap_stack_box;
+mod smart_pointer;
 
 use data::data_test;
 use method::method_test;
@@ -26,6 +30,10 @@ use closure::closure_test;
 use collections::collection_test;
 use iterator::iterator_test;
 use error_handle::error_handle_test;
+use io_test::io_test;
+use macro_test::macro_test;
+use heap_stack_box::heap_stack_box_test;
+use smart_pointer::smart_pointer_test;
 
 fn main() {
     //基础数据
@@ -48,4 +56,12 @@ fn main() {
     iterator_test();
     //异常处理 Option、Result和异常处理
     error_handle_test();
+    //基本输入输出
+    io_test();
+    //宏
+    macro_test();
+    //堆、栈、box
+    heap_stack_box_test();
+    //几种智能指针
+    smart_pointer_test();
 }
