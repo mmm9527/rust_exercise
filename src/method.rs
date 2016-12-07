@@ -122,11 +122,11 @@ pub fn method_test() {
     //文件输入输出
     let path = Path::new("hello.txt");
     let display = path.display();
-    let mut file: File = if !path.exists() { File::create(&path).unwrap() } else { File::open(&path).unwrap() };
+    let mut file: File = File::open(&path).unwrap() ; //if !path.exists() { File::create(&path).unwrap() } else { File::open(&path).unwrap() };
     let mut s = String::new();
     file.read_to_string(&mut s).unwrap();
     println!("file 's context={}", s);
-    file = OpenOptions::new().append(true).write(true).open(&path).unwrap();
+    file = OpenOptions::new().append(false).write(true).open(&path).unwrap();
     file.write_all("不知道".as_bytes()).unwrap();
 
     //条件分支

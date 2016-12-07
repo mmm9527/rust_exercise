@@ -4,6 +4,7 @@
 #![allow(unused_imports)]
 #![allow(unused_assignments)]
 #![feature(box_syntax, box_patterns)]
+#![feature(ptr_eq)]
 
 mod data;
 mod method;
@@ -19,6 +20,8 @@ mod io_test;
 mod macro_test;
 mod heap_stack_box;
 mod smart_pointer;
+mod common_trait;
+mod concurrent;
 
 use data::data_test;
 use method::method_test;
@@ -34,6 +37,8 @@ use io_test::io_test;
 use macro_test::macro_test;
 use heap_stack_box::heap_stack_box_test;
 use smart_pointer::smart_pointer_test;
+use common_trait::common_trait_test;
+use concurrent::concurrent_test;
 
 fn main() {
     //基础数据
@@ -64,4 +69,8 @@ fn main() {
     heap_stack_box_test();
     //几种智能指针
     smart_pointer_test();
+    //类型系统中的几个常见 trait
+    common_trait_test();
+    //并发，并行，多线程编程
+    concurrent_test();
 }
