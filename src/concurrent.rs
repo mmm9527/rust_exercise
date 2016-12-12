@@ -3,8 +3,10 @@ extern crate rand;
 use std::thread;
 use std::sync::mpsc;
 use std::rc::Rc;
+use std::sync::{Arc, Mutex, Condvar};
 use std::time::Duration;
 use self::rand::distributions::{IndependentSample, Range};
+use std::sync::atomic::{AtomicUsize, Ordering};
 
 #[derive(Debug)]
 enum Grade {
@@ -130,10 +132,70 @@ pub fn concurrent_test() {
     });
 
     // 等待新线程先运行
-//    new_thread.join().unwrap();
+    //    new_thread.join().unwrap();
     unsafe {
         println!("static value in main thread: {}", VAR);
-
     }
+
+    //堆
+    let var: Arc<i32> = Arc::new(5);
+    let share_var = var.clone();
+    let new_thread = thread::spawn(move || {
+        println!("share value in new thread: {}, address: {:p}", share_var, &*share_var);
+    });
+    // 等待新建线程先执行
+    new_thread.join().unwrap();
+    println!("share value in main thread: {}, address: {:p}", var, &*var);
+
+    //锁，通知
+    let pair = Arc::new((Mutex::new(false), Condvar::new()));
+    let pair2 = pair.clone();
+
+    thread::spawn(move || {
+        let (ref lock, ref cvar) = *pair2;
+        let mut started = lock.lock().unwrap();
+        *started = true;
+        cvar.notify_one();
+        println!("notify main thread");
+    });
+
+    let (ref lock, ref cvar) = *pair;
+    let mut started = lock.lock().unwrap();
+    while !*started {
+        println!("before wait");
+        started = cvar.wait(started).unwrap();
+        println!("after wait");
+    }
+    //原子 AtomicUsize
+
+    let var: Arc<AtomicUsize> = Arc::new(AtomicUsize::new(5));
+
+    let share_var = var.clone();
+
+    let new_thread = thread::spawn(move || {
+        println!("share value in new thread : {}", share_var.load(Ordering::SeqCst));
+        //修改值
+        share_var.store(9, Ordering::SeqCst);
+    });
+
+    new_thread.join().unwrap();
+    println!("share value in main thread: {}", var.load(Ordering::SeqCst));
+
+    //Mutex
+    let var: Arc<Mutex<u32>> = Arc::new(Mutex::new(5));
+    let share_var = var.clone();
+
+    // 创建一个新线程
+    let new_thread = thread::spawn(move || {
+        let mut val = share_var.lock().unwrap();
+        println!("share value in new thread: {}", *val);
+        // 修改值
+        *val = 9;
+    });
+
+    // 等待新建线程先执行
+    new_thread.join().unwrap();
+    println!("share value in main thread: {}", *(var.lock().unwrap()));
+
     println!("===================concurrent test   end===================");
 }
