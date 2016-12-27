@@ -1,12 +1,11 @@
-extern crate rand;
-
 use std::thread;
 use std::sync::mpsc;
 use std::rc::Rc;
 use std::sync::{Arc, Mutex, Condvar};
 use std::time::Duration;
-use self::rand::distributions::{IndependentSample, Range};
+use rand::distributions::{IndependentSample, Range};
 use std::sync::atomic::{AtomicUsize, Ordering};
+use rand;
 
 #[derive(Debug)]
 enum Grade {

@@ -1,5 +1,3 @@
-extern crate rand;
-
 use std::mem;
 use std::io::prelude::*;
 use std::io;
@@ -7,7 +5,7 @@ use std::fs::File;
 use std::fs::OpenOptions;
 use std::path::Path;
 use std::fmt::Debug;
-use self::rand::distributions::{IndependentSample, Range};
+use rand::distributions::{IndependentSample, Range};
 
 pub fn method_test() {
     println!("===================method test begin  ===================");

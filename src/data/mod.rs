@@ -1,4 +1,3 @@
-extern crate rand;
 
 use std::mem;
 use std::io::prelude::*;
@@ -7,7 +6,8 @@ use std::fs::File;
 use std::fs::OpenOptions;
 use std::path::Path;
 use std::fmt::Debug;
-use self::rand::distributions::{IndependentSample, Range};
+use rand::distributions::{IndependentSample, Range};
+use rand;
 
 pub fn data_test() {
     println!("===================basic data test begin===================");

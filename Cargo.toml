@@ -6,6 +6,7 @@ authors = ["jy00464346 <jy00464346@163.com>"]
 [dependencies]
 rand = "0.3"
 libc = "0.2"
+rustc-serialize = "0.3"
 
 [lib]
 name="test"

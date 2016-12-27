@@ -1,9 +1,7 @@
-extern crate libc;
-
-use self::libc::c_int;
-use self::libc::c_void;
-use self::libc::size_t;
-use self::libc::c_schar;
+use libc::c_int;
+use libc::c_void;
+use libc::size_t;
+use libc::c_schar;
 use std::os::raw::c_char;
 use std::ptr;
 

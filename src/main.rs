@@ -6,6 +6,11 @@
 #![feature(box_syntax, box_patterns)]
 #![feature(ptr_eq)]
 
+extern crate rand;
+extern crate libc;
+extern crate rustc_serialize;
+// 引入rustc_serialize模块
+
 mod data;
 mod method;
 mod trait_test;
@@ -29,6 +34,7 @@ mod attr_compiler_options;
 mod any_reflect;
 mod common_data_structure;
 mod std_test;
+mod actual_exercise;
 
 use data::data_test;
 use method::method_test;
@@ -53,52 +59,58 @@ use attr_compiler_options::compiler_options;
 use any_reflect::any_reflect_test;
 use common_data_structure::common_data_structure;
 use std_test::std_test;
+use actual_exercise::actual_exercise;
+
+
 
 fn main() {
     //基础数据
-//    data_test();
+    //    data_test();
     //函数
-//    method_test();
+    //    method_test();
     //trait
-//    trait_test();
+    //    trait_test();
     //所有权
-//    ownership_test();
+    //    ownership_test();
     //借用
-//    borrowing_test();
+    //    borrowing_test();
     //生命周期
-//    lifetime_test();
+    //    lifetime_test();
     //闭包
-//    closure_test();
+    //    closure_test();
     //集合类型
-//    collection_test();
+    //    collection_test();
     //迭代器
-//    iterator_test();
+    //    iterator_test();
     //异常处理 Option、Result和异常处理
-//    error_handle_test();
+    //    error_handle_test();
     //基本输入输出
-//    io_test();
+    //    io_test();
     //宏
-//    macro_test();
+    //    macro_test();
     //堆、栈、box
-//    heap_stack_box_test();
+    //    heap_stack_box_test();
     //几种智能指针
-//    smart_pointer_test();
+    //    smart_pointer_test();
     //类型系统中的几个常见 trait
-//    common_trait_test();
+    //    common_trait_test();
     //并发，并行，多线程编程
-//    concurrent_test();
+    //    concurrent_test();
     //unsafe 、原始指针
-//    unsafe_raw_pointer();
+    //    unsafe_raw_pointer();
     //FFI
-//    ffi_test();
+    //    ffi_test();
     //运算符重载
-//    operator_overriding();
+    //    operator_overriding();
     //属性和编译器参数
-//    compiler_options();
+    //    compiler_options();
     //any与反射
-//    any_reflect_test();
+    //    any_reflect_test();
     //常用数据结构
-//    common_data_structure();
+    //    common_data_structure();
     //标准库介绍
-    std_test();
+    //    std_test();
+    //实战练习
+    actual_exercise();
 }
+
