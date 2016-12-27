@@ -25,6 +25,10 @@ mod concurrent;
 mod unsafe_raw_pointer;
 mod ffi;
 mod operator_overriding;
+mod attr_compiler_options;
+mod any_reflect;
+mod common_data_structure;
+mod std_test;
 
 use data::data_test;
 use method::method_test;
@@ -45,6 +49,10 @@ use concurrent::concurrent_test;
 use unsafe_raw_pointer::unsafe_raw_pointer;
 use ffi::ffi_test;
 use operator_overriding::operator_overriding;
+use attr_compiler_options::compiler_options;
+use any_reflect::any_reflect_test;
+use common_data_structure::common_data_structure;
+use std_test::std_test;
 
 fn main() {
     //基础数据
@@ -84,5 +92,13 @@ fn main() {
     //FFI
 //    ffi_test();
     //运算符重载
-    operator_overriding();
+//    operator_overriding();
+    //属性和编译器参数
+//    compiler_options();
+    //any与反射
+//    any_reflect_test();
+    //常用数据结构
+//    common_data_structure();
+    //标准库介绍
+    std_test();
 }
