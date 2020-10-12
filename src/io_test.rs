@@ -2,24 +2,24 @@ use std::fs::File;
 use std::io::{self, Stdin, Stdout, Write, Read};
 
 fn read_from_stdin(buf: &mut String) -> io::Result<()> {
-    try!(io::stdin().read_line(buf));
+    io::stdin().read_line(buf)?;
     Ok(())
 }
 
 fn write_from_stdout(buf: &[u8]) -> io::Result<()> {
-    try!(io::stdout().write(buf));
+    io::stdout().write(buf)?;
     Ok(())
 }
 
 fn create_file(file_name: &str, buf: &[u8]) -> io::Result<()> {
-    let mut f: File = try!(File::create(file_name));
-    try!(f.write(buf));
+    let mut f: File = File::create(file_name)?;
+    f.write(buf)?;
     Ok(())
 }
 
 fn read_file(file_name: &str, mut buf: &mut String) -> io::Result<()> {
-    let mut f: File = try!(File::open(file_name));
-    try!(f.read_to_string(&mut buf));
+    let mut f: File = File::open(file_name)?;
+    f.read_to_string(&mut buf)?;
     Ok(())
 }
 

@@ -40,7 +40,7 @@ pub fn iterator_test() {
     let n = vec!["m1", "m2", "m3"];
     let n1 = vec![1, 2, 3];
 
-    let s: HashMap<_, _> = n.iter().zip(n1.iter()).collect();
+    let s: <_, _> = n.iter().zip(n1.iter()).collect();
     println!("s={:?}", s);
 
     let v = vec![1u64, 2, 3, 4, 5, 6];

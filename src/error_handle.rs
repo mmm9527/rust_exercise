@@ -48,10 +48,10 @@ fn file_double<P: AsRef<Path>>(file_path: P) -> Result<i32, String> {
 }
 
 fn file_double2<P: AsRef<Path>>(file_path: P) -> Result<i32, Box<Error>> {
-    let mut file = try!(File::open(file_path));
+    let mut file = File::open(file_path)?;
     let mut contents = String::new();
-    try!(file.read_to_string(&mut contents));
-    let n = try!(contents.trim().parse::<i32>());
+    file.read_to_string(&mut contents)?;
+    let n = contents.trim().parse::<i32>()?;
     Ok(2 * n)
 }
 
@@ -74,10 +74,10 @@ impl From<ParseIntError> for CliError {
 }
 
 fn file_double_verbose<P: AsRef<Path>>(file_path: P) -> Result<i32, CliError> {
-    let mut file = try!(File::open(file_path).map_err(CliError::Io));
+    let mut file = File::open(file_path).map_err(CliError::Io)?;
     let mut contents = String::new();
-    try!(file.read_to_string(&mut contents).map_err(CliError::Io));
-    let n = try!(contents.trim().parse::<i32>().map_err(CliError::Parse));
+    file.read_to_string(&mut contents).map_err(CliError::Io)?;
+    let n = contents.trim().parse::<i32>().map_err(CliError::Parse)?;
     Ok(2 * n)
 }
 
