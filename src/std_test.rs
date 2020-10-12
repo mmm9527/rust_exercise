@@ -100,7 +100,7 @@ pub fn std_test() {
     let mut arg_iter = args();
     arg_iter.next().unwrap();
     // panic if there is no one
-    arg_iter.next().unwrap();
+    // arg_iter.next().unwrap();
     let pattern = arg_iter.next().unwrap_or("main".to_string());
     let pt = arg_iter.next().unwrap_or("./".to_string());
     let output = Command::new("/usr/bin/grep")
