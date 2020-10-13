@@ -75,7 +75,7 @@ fn main() {
     //生命周期
     // lifetime_test();
     //闭包
-    // closure_test();
+    closure_test();
     //集合类型
     // collection_test();
     //迭代器

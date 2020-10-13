@@ -1,7 +1,8 @@
 #include <stdio.h>
-typedef void (*rust_callback)(__int32_t);
+#include <stdint.h>
+typedef void (*rust_callback)(int32_t);
 
-void run_callback(__int32_t data, rust_callback callback) {
+void run_callback(int32_t data, rust_callback callback) {
     callback(data + 1); // 调用传过来的回调函数
 }
 
