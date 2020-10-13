@@ -3,10 +3,10 @@ type int8_t = i8;
 
 pub fn compiler_options() {}
 
-#[test]
+/*#[test]
 fn test_foo() {
     println!("this is test !");
-}
+}*/
 
 #[cfg(target_os = "linux")]
 mod bar {

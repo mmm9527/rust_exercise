@@ -1,7 +1,7 @@
 use std::mem;
 use std::collections::HashMap;
 
-struct Person{
+struct Person {
     name: String,
     age: u64,
 }
@@ -14,7 +14,7 @@ pub fn iterator_test() {
         let result = match IntoIterator::into_iter(v) {
             mut iter => loop {
                 match iter.next() {
-                    Some(x) => { println!("{}", x); },
+                    Some(x) => { println!("{}", x); }
                     None => break,
                 }
             },
@@ -40,7 +40,7 @@ pub fn iterator_test() {
     let n = vec!["m1", "m2", "m3"];
     let n1 = vec![1, 2, 3];
 
-    let s: <_, _> = n.iter().zip(n1.iter()).collect();
+    let s: HashMap<_, _> = n.iter().zip(n1.iter()).collect();
     println!("s={:?}", s);
 
     let v = vec![1u64, 2, 3, 4, 5, 6];
@@ -72,7 +72,7 @@ pub fn iterator_test() {
 
     let a1 = [0, 1, 2];
     let mut iter = a1.into_iter().filter(|&&x| x > 1);
-    println!("{:?}",iter.next());
+    println!("{:?}", iter.next());
 
 
     println!("===================iterator test   end===================");

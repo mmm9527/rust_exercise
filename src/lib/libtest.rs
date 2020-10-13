@@ -56,4 +56,26 @@ pub extern "C" fn push_foo_element_c2(foo: *mut c_void) {
     }
 }
 
+#[derive(Debug)]
+pub struct Rectangle {
+    pub width: u32,
+    pub height: u32,
+}
+
+impl Rectangle {
+    pub fn can_hold(&self, other: &Rectangle) -> bool {
+        self.width > other.width && self.height > other.height
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test() {
+        assert!(true,"12321321");
+    }
+}
+
 
