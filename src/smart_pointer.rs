@@ -1,9 +1,12 @@
+use std::cell::{Cell, RefCell};
+use std::collections::HashMap;
+use std::ops::Deref;
 use std::rc::{Rc, Weak};
 use std::sync::{Arc, Mutex, RwLock};
 use std::sync::mpsc::channel;
 use std::thread;
-use std::cell::{Cell, RefCell};
-use std::collections::HashMap;
+
+use self::List::{Cons, Nil};
 
 struct Owner {
     name: String
@@ -11,20 +14,43 @@ struct Owner {
 
 struct Gadget {
     id: i32,
-    owner: Rc<Owner>
+    owner: Rc<Owner>,
 }
 
 #[derive(Debug)]
 struct Teacher {
     name: String,
-    students: RefCell<Vec<Weak<Student>>>
+    students: RefCell<Vec<Weak<Student>>>,
 }
 
 #[derive(Debug)]
 struct Student {
     id: i32,
-    teacher: Rc<Teacher>
+    teacher: Rc<Teacher>,
 }
+
+#[derive(Debug)]
+enum List {
+    Cons(i32, Box<List>),
+    Nil,
+}
+
+struct MyBox<T>(T);
+
+impl<T> MyBox<T> {
+    fn new(t: T) -> MyBox<T> {
+        MyBox(t)
+    }
+}
+
+impl<T> Deref for MyBox<T> {
+    type Target = T;
+
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+
 
 pub fn smart_pointer_test() {
     println!("===================smart_pointer test begin===================");
@@ -36,8 +62,8 @@ pub fn smart_pointer_test() {
     let five2 = five.clone();
     println!("src={},rc1={},rc2={}", five, five1, five2);
 
-    let five3 = &five ;
-    assert!(Rc::ptr_eq(&five,five3));
+    let five3 = &five;
+    assert!(Rc::ptr_eq(&five, five3));
 
     let five = Rc::new(5);
     let weak_five = Rc::downgrade(&five);
@@ -130,7 +156,7 @@ pub fn smart_pointer_test() {
 
     let student_teacher: Rc<Teacher> = Rc::new(Teacher {
         name: "teacher1".to_string(),
-        students: RefCell::new(Vec::new())
+        students: RefCell::new(Vec::new()),
     });
 
     let student1 = Rc::new(Student { id: 1, teacher: student_teacher.clone() });
@@ -144,6 +170,23 @@ pub fn smart_pointer_test() {
         println!("student={:?}", student);
     }
 
+    let list = Cons(1,
+                    Box::new(Cons(2,
+                                  Box::new(Cons(3,
+                                                Box::new(Nil))))));
 
+    let x = 5;
+    let y = MyBox::new(x);
+
+    assert_eq!(5, x);
+    assert_eq!(5, *y);
+
+    println!("{:?}", list);
+    let m = MyBox::new("Rust");
+    hello(&m);
     println!("===================smart_pointer test   end===================");
+}
+
+fn hello(name: &str) {
+    println!("Hello, {}!", name);
 }

@@ -75,7 +75,7 @@ fn main() {
     //生命周期
     // lifetime_test();
     //闭包
-    closure_test();
+    // closure_test();
     //集合类型
     // collection_test();
     //迭代器
@@ -89,7 +89,7 @@ fn main() {
     //堆、栈、box
     // heap_stack_box_test();
     //几种智能指针
-    // smart_pointer_test();
+    smart_pointer_test();
     //类型系统中的几个常见 trait
     // common_trait_test();
     //并发，并行，多线程编程

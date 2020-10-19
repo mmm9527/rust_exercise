@@ -4,9 +4,9 @@ version = "0.0.1"
 authors = ["jy00464346 <jy00464346@163.com>"]
 
 [dependencies]
-rand = "0.3"
-libc = "0.2"
-rustc-serialize = "0.3"
+rand = "*"
+libc = "*"
+rustc-serialize = "*"
 
 [lib]
 name="test"
