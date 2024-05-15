@@ -3,13 +3,14 @@
 #![allow(dead_code)]
 #![allow(unused_imports)]
 #![allow(unused_assignments)]
-#![feature(box_syntax, box_patterns)]
+#![feature(box_patterns)]
 #![feature(ptr_eq)]
 
 extern crate libc;
 extern crate rand;
-extern crate rustc_serialize;
-// 引入rustc_serialize模块
+// extern crate rustc_serialize;
+extern crate serde;
+extern crate serde_json;
 
 use actual_exercise::actual_exercise;
 use any_reflect::any_reflect_test;

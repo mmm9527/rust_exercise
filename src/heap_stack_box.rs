@@ -10,7 +10,7 @@ pub fn heap_stack_box_test() {
     let b = foo("a");
     println!("{}", b);
 
-    let boxed = Some(box 5);
+    let boxed = Some(Box::new(5));
     match boxed {
         Some(box unboxed) => println!("Some {}", unboxed),
         None => println!("None"),

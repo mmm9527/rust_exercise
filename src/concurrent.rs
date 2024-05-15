@@ -3,7 +3,6 @@ use std::sync::mpsc;
 use std::rc::Rc;
 use std::sync::{Arc, Mutex, Condvar};
 use std::time::Duration;
-use rand::distributions::{IndependentSample, Range};
 use std::sync::atomic::{AtomicUsize, Ordering};
 use rand;
 
@@ -45,14 +44,14 @@ pub fn concurrent_test() {
     thread2.unwrap().join().unwrap();
 
     //练习
-    let random_range = Range::new(0, 100i32);
+    // let random_range = Range::new(0, 100i32);
     let mut rng = rand::thread_rng();
 
 
     for i in 0..100 {
         let mut p = Student {
             id: i + 1,
-            score: random_range.ind_sample(&mut rng),
+            score: 1,
             grade: Grade::None,
         };
         thread::Builder::new().name("thread[".to_string() + &i.to_string() + "]").spawn(move || {

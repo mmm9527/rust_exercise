@@ -1,4 +1,4 @@
-
+use std::collections::btree_set::Range;
 use std::mem;
 use std::io::prelude::*;
 use std::io;
@@ -6,7 +6,7 @@ use std::fs::File;
 use std::fs::OpenOptions;
 use std::path::Path;
 use std::fmt::Debug;
-use rand::distributions::{IndependentSample, Range};
+// use std::ops::Range;
 use rand;
 
 pub fn data_test() {
@@ -124,16 +124,16 @@ pub fn data_test() {
     }
     let eu: Message = Message::ChangeColor(1, 2, 3);
     println!("enum message ChangeColor={:?}", eu);
-    let between = Range::new(1i32, 1000i32);
+    // let between = Range::new(1i32, 1000i32);
     let mut rng = rand::thread_rng();
-    let x = between.ind_sample(&mut rng);
-    match x {
-        0 | 1 => println!("0 or 1"),
-        2 ... 50 => println!("2 ~ 50"),
-        50 ... 100 => println!("50 ~ 100"),
-        n @ 100 ... 1000 => println!("100 ~ 1000 = {}", n),
-        _ => println!("other "),
-    };
+    // let x = between.ind_sample(&mut rng);
+    // match x {
+    //     0 | 1 => println!("0 or 1"),
+    //     2 ... 50 => println!("2 ~ 50"),
+    //     50 ... 100 => println!("50 ~ 100"),
+    //     n @ 100 ... 1000 => println!("100 ~ 1000 = {}", n),
+    //     _ => println!("other "),
+    // };
 
     match point {
         Point3d { y, .. } => println!("point3d'y={}", y),

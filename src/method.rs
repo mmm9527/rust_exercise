@@ -5,7 +5,6 @@ use std::fs::File;
 use std::fs::OpenOptions;
 use std::path::Path;
 use std::fmt::Debug;
-use rand::distributions::{IndependentSample, Range};
 
 pub fn method_test() {
     println!("===================method test begin  ===================");
